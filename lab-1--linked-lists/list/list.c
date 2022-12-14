@@ -62,45 +62,20 @@ int list_length(list_t *l)
  } 
 
 void list_add_to_back(list_t *l, elem value) {
-  node_t *curr_node;
-  node_t *new_node = (node_t*)malloc(sizeof(node_t));
-  
-  new_node->value = value;
-  new_node->next = NULL;
-  
-  if(l->head == NULL){
-    l->head = new_node;
-  }
-  else
-  {
-    curr_node = l->head;
-    while(curr_node->next != NULL){
-      curr_node = curr_node->next;
-    }
-    curr_node->next = new_node;
-  }    
+  list_add_at_index(l, value, list_length(l));
  }
 
 
 void list_add_to_front(list_t *l, elem value) {
 
-    if(!l)
-    {
-        printf("The list you entered does NOT exist, please try agian");
-    } // Just a condition to ensure proper list is entered.
-
-    list_t *n  = list_alloc(value);
-    node_t *t  = l -> head;
-    
-    n -> head -> next = t;
-    l -> head = n -> head;
+   list_add_at_index(l, value, 0);
 
 }
 
 void list_add_at_index(list_t *l, elem value, int index) {
 
     node_t* curr = l->head;
-    node_t* newNode = (node_t*) malloc(sizeof(node_t));
+    node_t* newNode = (node_t*) malloc(sizeof(node_t));s
     node_t* temp = (node_t*) malloc(sizeof(node_t));
     int count = 0;
 
